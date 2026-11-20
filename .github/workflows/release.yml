@@ -26,22 +26,22 @@ jobs:
       - run: npm test
       - run: node scripts/build-release.mjs
       - name: Install production dependencies
-        working-directory: artifacts/commercespine-mcp-0.3.2
+        working-directory: artifacts/commercespine-mcp-0.3.3
         run: npm ci --omit=dev --ignore-scripts --no-audit --no-fund
       - name: Validate and package Desktop bundle
-        working-directory: artifacts/commercespine-mcp-0.3.2
+        working-directory: artifacts/commercespine-mcp-0.3.3
         run: |
           npm exec --yes --package=@anthropic-ai/mcpb@2.1.2 -- mcpb validate manifest.json
-          npm exec --yes --package=@anthropic-ai/mcpb@2.1.2 -- mcpb pack . ../commercespine-mcp-0.3.2.mcpb
-      - run: node test/distribution-smoke.mjs artifacts/commercespine-mcp-0.3.2
+          npm exec --yes --package=@anthropic-ai/mcpb@2.1.2 -- mcpb pack . ../commercespine-mcp-0.3.3.mcpb
+      - run: node test/distribution-smoke.mjs artifacts/commercespine-mcp-0.3.3
       - name: Prepare downloads
         working-directory: artifacts
         run: |
-          cp commercespine-mcp-0.3.2.mcpb commercespine-mcp-0.3.2.zip
-          sha256sum commercespine-mcp-0.3.2.mcpb commercespine-mcp-0.3.2.zip > SHA256SUMS.txt
+          cp commercespine-mcp-0.3.3.mcpb commercespine-mcp-0.3.3.zip
+          sha256sum commercespine-mcp-0.3.3.mcpb commercespine-mcp-0.3.3.zip > SHA256SUMS.txt
       - uses: actions/upload-artifact@v4
         with:
-          name: commercespine-mcp-0.3.2
+          name: commercespine-mcp-0.3.3
           path: |
             artifacts/*.mcpb
             artifacts/*.zip
@@ -58,9 +58,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
         with:
-          name: commercespine-mcp-0.3.2
+          name: commercespine-mcp-0.3.3
           path: release-assets
       - name: Publish preview
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create v0.3.2-rc.1 release-assets/* --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --prerelease --title 'Commerce Spine MCP 0.3.2 preview' --notes-file docs/release-notes.md
+        run: gh release create v0.3.3-rc.1 release-assets/* --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --prerelease --title 'Commerce Spine MCP 0.3.3 preview' --notes-file docs/release-notes.md

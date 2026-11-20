@@ -1,6 +1,6 @@
 # Native context and authoring
 
-The0.3.2 native runtime uses direct authenticated Commerce Spine APIs. Read the two operating skills and their typed contracts through MCP resources or `ppc_workflow_guide`; setup is documented in [setup.md](setup.md).
+The0.3.3 native runtime uses direct authenticated Commerce Spine APIs. Read the two operating skills and their typed contracts through MCP resources or `ppc_workflow_guide`; setup is documented in [setup.md](setup.md).
 
 Native context discovery (`ppc_native_analyses`, `ppc_account_briefing`, `ppc_start_recurring_analysis`) returns explicit linked SOP, KPI and information IDs. `includeContext:true` returns complete pinned records, rich documents, tags, stable tag IDs, properties and references. GraphQL errors/partial bundles are failures, never complete context.
 

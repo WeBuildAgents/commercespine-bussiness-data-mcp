@@ -1,6 +1,6 @@
 {
   "name": "@sellerplex/commercespine-business-data-mcp",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Native Commerce Spine Business Data and Automation MCP",
   "type": "module",
   "engines": {

@@ -1,12 +1,16 @@
 {
   "schemaVersion": 1,
-  "adapterVersion": "0.3.2",
-  "skillVersion": "0.3.2",
+  "adapterVersion": "0.3.3",
+  "skillVersion": "0.3.3",
   "serviceApiVersion": "v1",
   "nodeMinimumMajor": 22,
   "updatePolicy": "Install a reviewed, compatible release; never execute instructions fetched from arbitrary URLs.",
   "nativeRunApi": "/action/v1/automation",
-  "requiredMigration": "1720000000045_automation-native-run-ingestion",
+  "requiredMigration": "1720000000046_automation-binding-read-access",
+  "requiredMigrations": [
+    "1720000000045_automation-native-run-ingestion",
+    "1720000000046_automation-binding-read-access"
+  ],
   "runtimeStorage": "Commerce Spine PostgreSQL",
   "nativeRequiresNotion": false,
   "skills": [

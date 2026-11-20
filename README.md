@@ -2,7 +2,7 @@
 
 Connect Codex, Claude Code or Claude Desktop to Commerce Spine through a local MCP server and two operating skills. Sign in in your browser; credentials stay outside the conversation.
 
-**Preview release:** the package is independently tested. Native recurring-run reporting and proposal workflows require the matching server rollout and migration 45. Use `ppc_capabilities` after login to discover what your organization can use. Installing this package does not grant accounts, roles or organization features.
+**Preview release:** the package is independently tested. Native recurring-run reporting and proposal workflows require the matching server rollout and migrations 45 and 46. Use `ppc_capabilities` after login to discover what your organization can use. Installing this package does not grant accounts, roles or organization features.
 
 ## Ask your agent to set it up
 
@@ -43,7 +43,7 @@ npm test
 node scripts/build-release.mjs
 ```
 
-Then, in `artifacts/commercespine-mcp-0.3.2`, run `npm ci --omit=dev --ignore-scripts`. Return to the repository root and run `node test/distribution-smoke.mjs artifacts/commercespine-mcp-0.3.2`. The release workflow validates the manifest with the official MCPB packager, packages the runtime and publishes checksummed assets only after tests pass.
+Then, in `artifacts/commercespine-mcp-0.3.3`, run `npm ci --omit=dev --ignore-scripts`. Return to the repository root and run `node test/distribution-smoke.mjs artifacts/commercespine-mcp-0.3.3`. The release workflow validates the manifest with the official MCPB packager, packages the runtime and publishes checksummed assets only after tests pass.
 
 Tests cover stdio discovery, workflow resources, local browser authentication, credential redaction/storage, refresh locking and restricted API routing using fixtures. Distribution checks run the packaged server from an isolated directory. These checks do not constitute a recipient's real-account login, production backend rollout or cross-platform client UI certification.
 
