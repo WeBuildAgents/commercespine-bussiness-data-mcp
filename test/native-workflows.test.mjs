@@ -18,6 +18,14 @@ const memory=()=>({value:session(),async load(){return this.value},async save(v)
 async function connect(t,request){const server=createServer({request},{legacy:false}),client=new Client({name:'native-test',version:'1'});const [a,b]=InMemoryTransport.createLinkedPair();await server.connect(a);await client.connect(b);t.after(async()=>{await client.close();await server.close()});return client}
 const uuids={analysis:'11111111-1111-4111-8111-111111111111',claim:'22222222-2222-4222-8222-222222222222',run:'33333333-3333-4333-8333-333333333333'};
 
+test('scoped information uses the production cursor-only contract and rejects unsupported filters before a request',async t=>{
+ const calls=[];const client=await connect(t,async(...args)=>{calls.push(args);return {data:[],pageInfo:{hasNextPage:false}}});
+ assert.ok(!(await client.callTool({name:'ppc_business_library',arguments:{section:'information',scopeId:uuids.analysis}})).isError);
+ assert.equal(calls[0][1],`/v1/native/scopes/${uuids.analysis}/information`);
+ for(const extra of [{status:'latest'},{q:'test'},{tag:'budget'}])assert.ok((await client.callTool({name:'ppc_business_library',arguments:{section:'information',scopeId:uuids.analysis,...extra}})).isError);
+ assert.equal(calls.length,1);
+});
+
 test('native MCP negotiation exposes both complete workflows and no legacy or approval primitives',async t=>{
  const client=await connect(t,async()=>({ok:true}));const names=(await client.listTools()).tools.map(t=>t.name);
  for(const name of ['ppc_connect','ppc_capabilities','ppc_native_assignments','ppc_native_run_start','ppc_native_run_complete','ppc_native_proposal_prepare','ppc_ad_hoc_proposal_prepare','ppc_metadata_create','ppc_metadata_archive','ppc_review_prepare'])assert.ok(names.includes(name),name);
