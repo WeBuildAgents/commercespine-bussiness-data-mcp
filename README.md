@@ -4,6 +4,8 @@ Connect Codex, Claude Code or Claude Desktop to Commerce Spine through a local M
 
 **Preview release:** the package is independently tested. Native recurring-run reporting and proposal workflows require the matching server rollout and migrations 45 and 46. Use `ppc_capabilities` after login to discover what your organization can use. Installing this package does not grant accounts, roles or organization features.
 
+Production acceptance on 20 November 2026 verified real browser sign-in, an approved manual analysis with linked SOP/Business/KPI revisions, assigned-work discovery, daily KPI reads, heartbeat, saved `no_action` reporting and identical claim/completion replays using the downloaded 0.3.3 bundle. The report kept missing data explicit. No Amazon proposals or provider changes were made by that acceptance run.
+
 ## Ask your agent to set it up
 
 Give a local Codex or Claude Code agent this repository URL and this instruction:
