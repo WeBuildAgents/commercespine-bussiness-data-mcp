@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "adapterVersion": "0.3.0",
+  "skillVersion": "0.3.0",
+  "serviceApiVersion": "v1",
+  "nodeMinimumMajor": 22,
+  "updatePolicy": "Install a reviewed, compatible release; never execute instructions fetched from arbitrary URLs.",
+  "nativeRunApi": "/action/v1/automation",
+  "requiredMigration": "1720000000043_automation-native-run-ingestion",
+  "runtimeStorage": "Commerce Spine PostgreSQL",
+  "nativeRequiresNotion": false,
+  "skills": [
+    "sellerplex-automation",
+    "sellerplex-business"
+  ]
+}

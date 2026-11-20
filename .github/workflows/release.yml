@@ -1,0 +1,66 @@
+name: Verify and package MCP
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Publish the verified preview release
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npm test
+      - run: node scripts/build-release.mjs
+      - name: Install production dependencies
+        working-directory: artifacts/commercespine-mcp-0.3.0
+        run: npm ci --omit=dev --ignore-scripts --no-audit --no-fund
+      - name: Validate and package Desktop bundle
+        working-directory: artifacts/commercespine-mcp-0.3.0
+        run: |
+          npm exec --yes --package=@anthropic-ai/mcpb@2.1.2 -- mcpb validate manifest.json
+          npm exec --yes --package=@anthropic-ai/mcpb@2.1.2 -- mcpb pack . ../commercespine-mcp-0.3.0.mcpb
+      - run: node test/distribution-smoke.mjs artifacts/commercespine-mcp-0.3.0
+      - name: Prepare downloads
+        working-directory: artifacts
+        run: |
+          cp commercespine-mcp-0.3.0.mcpb commercespine-mcp-0.3.0.zip
+          sha256sum commercespine-mcp-0.3.0.mcpb commercespine-mcp-0.3.0.zip > SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: commercespine-mcp-0.3.0
+          path: |
+            artifacts/*.mcpb
+            artifacts/*.zip
+            artifacts/SHA256SUMS.txt
+            artifacts/distribution-smoke.json
+          if-no-files-found: error
+  publish:
+    if: github.event_name == 'workflow_dispatch' && inputs.publish && github.ref == 'refs/heads/main'
+    needs: package
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: commercespine-mcp-0.3.0
+          path: release-assets
+      - name: Publish preview
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create v0.3.0-rc.1 release-assets/* --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --prerelease --title 'Commerce Spine MCP 0.3.0 preview' --notes-file docs/release-notes.md

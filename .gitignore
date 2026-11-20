@@ -1,0 +1,12 @@
+node_modules/
+dist/
+artifacts/
+.env
+.env.*
+*.log
+*.mcpb
+*.zip
+*.tgz
+session.json
+*.pem
+*.key

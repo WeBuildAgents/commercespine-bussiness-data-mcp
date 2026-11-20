@@ -1,0 +1,4 @@
+interface:
+  display_name: "SellerPlex Automation"
+  short_description: "Run assigned analyses and preserve native history"
+  default_prompt: "Use $sellerplex-automation to run my assigned analyses for the requested reporting period."

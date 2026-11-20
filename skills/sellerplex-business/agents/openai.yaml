@@ -1,0 +1,4 @@
+interface:
+  display_name: "SellerPlex Business"
+  short_description: "Analyze data and prepare governed Business changes"
+  default_prompt: "Use $sellerplex-business to analyze the requested account or prepare my Business changes."
