@@ -43,7 +43,7 @@ npm test
 node scripts/build-release.mjs
 ```
 
-Then, in `artifacts/commercespine-mcp-0.3.1`, run `npm ci --omit=dev --ignore-scripts`. Return to the repository root and run `node test/distribution-smoke.mjs artifacts/commercespine-mcp-0.3.1`. The release workflow validates the manifest with the official MCPB packager, packages the runtime and publishes checksummed assets only after tests pass.
+Then, in `artifacts/commercespine-mcp-0.3.2`, run `npm ci --omit=dev --ignore-scripts`. Return to the repository root and run `node test/distribution-smoke.mjs artifacts/commercespine-mcp-0.3.2`. The release workflow validates the manifest with the official MCPB packager, packages the runtime and publishes checksummed assets only after tests pass.
 
 Tests cover stdio discovery, workflow resources, local browser authentication, credential redaction/storage, refresh locking and restricted API routing using fixtures. Distribution checks run the packaged server from an isolated directory. These checks do not constitute a recipient's real-account login, production backend rollout or cross-platform client UI certification.
 

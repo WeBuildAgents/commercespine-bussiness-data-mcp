@@ -1,4 +1,4 @@
-# Commerce Spine MCP · 0.3.1
+# Commerce Spine MCP · 0.3.2
 
 This distribution includes a self-contained stdio MCP runtime and two operating skills:
 

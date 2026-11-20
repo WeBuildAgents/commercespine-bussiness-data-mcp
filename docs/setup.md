@@ -1,4 +1,4 @@
-# Native Commerce Spine MCP setup · 0.3.1
+# Native Commerce Spine MCP setup · 0.3.2
 
 The default runtime connects directly to Commerce Spine. It needs Node.js22+ on Codex/Claude Code; the Claude Desktop MCP bundle uses the app's Node runtime. It needs no Notion key, local service, Docker or local PostgreSQL. The historical `login --service URL` transport is compatibility-only and exposes explicitly separate legacy tools.
 

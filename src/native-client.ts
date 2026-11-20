@@ -29,7 +29,7 @@ export class NativeClient implements ApiClient {
   }
   private async api(session:NativeSession,method:Method,path:string,body?:unknown,agent=false):Promise<any>{
     const origin=serviceOrigin(session.origin);
-    const response=await this.fetcher(origin+path,{method,headers:{authorization:'Bearer '+(agent?session.credentials.agentToken:session.credentials.accessToken),'content-type':'application/json','x-ppc-adapter-version':'0.3.1'},...(body===undefined?{}:{body:JSON.stringify(body)}),redirect:'error',signal:AbortSignal.timeout(65000)});
+    const response=await this.fetcher(origin+path,{method,headers:{authorization:'Bearer '+(agent?session.credentials.agentToken:session.credentials.accessToken),'content-type':'application/json','x-ppc-adapter-version':'0.3.2'},...(body===undefined?{}:{body:JSON.stringify(body)}),redirect:'error',signal:AbortSignal.timeout(65000)});
     if(!response.ok){const value=await response.json().catch(()=>null);const code=value?.error?.code;throw new ServiceError(response.status,typeof code==='string'&&/^[A-Z0-9_]{1,80}$/.test(code)?code:'NATIVE_REQUEST_REJECTED')}
     return response.status===204?{ok:true}:response.json();
   }
@@ -62,7 +62,7 @@ export class NativeClient implements ApiClient {
       return {user:{id:profile.id,organizationId:profile.organization.id,displayName:profile.displayName,email:profile.email,roleCodes:profile.roleCodes,role:profile.roleCodes?.includes('ORG_ADMIN')?'Admin':'Member'},accounts,transport:'native',approvalChannel:'authenticated_console'};
     }
     if(method==='GET'&&path==='/v1/native/capabilities'){
-      const capabilities:Record<string,unknown>={transport:'native',adapterVersion:'0.3.1',apiOrigin:s.origin,consoleOrigin:s.consoleOrigin,approval:{agentCanApprove:false,channel:'authenticated_console',exactVersionRequired:true},skills:['sellerplex-automation','sellerplex-business'],nativeHistory:true};
+      const capabilities:Record<string,unknown>={transport:'native',adapterVersion:'0.3.2',apiOrigin:s.origin,consoleOrigin:s.consoleOrigin,approval:{agentCanApprove:false,channel:'authenticated_console',exactVersionRequired:true},skills:['sellerplex-automation','sellerplex-business'],nativeHistory:true};
       for(const [key,endpoint,agent] of [['business','/action/v1/business/catalog',true],['assignments','/action/v1/automation/assignments',true],['metadata','/api/v1/automation/metadata/tags',false]] as const){
         try{const value=await this.api(s,'GET',endpoint,undefined,agent);capabilities[key]={available:true,...(key==='business'?{catalog:value.data}:{}),...(key==='assignments'?{assignedAnalysisCount:value.data?.length}:{} )}}
         catch(error){if(!(error instanceof ServiceError))throw error;capabilities[key]={available:false,status:error.status,reason:error.status===404?'backend_upgrade_required':error.status===403?'not_currently_authorized':'unavailable'}}

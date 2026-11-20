@@ -1,4 +1,4 @@
-# Commerce Spine MCP 0.3.1 preview
+# Commerce Spine MCP 0.3.2 preview
 
 Self-contained local MCP runtime with 39 native tools, browser login and two complete operating skills for recurring automation and Business/ad hoc workflows.
 
