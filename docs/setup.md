@@ -1,4 +1,4 @@
-# Native Commerce Spine MCP setup · 0.3.0
+# Native Commerce Spine MCP setup · 0.3.1
 
 The default runtime connects directly to Commerce Spine. It needs Node.js22+ on Codex/Claude Code; the Claude Desktop MCP bundle uses the app's Node runtime. It needs no Notion key, local service, Docker or local PostgreSQL. The historical `login --service URL` transport is compatibility-only and exposes explicitly separate legacy tools.
 
@@ -35,7 +35,7 @@ Windows protects the saved connection with CurrentUser DPAPI. Unix uses a privat
 
 Read `sellerplex://skills/automation` for assigned recurring work and `sellerplex://skills/business` for ad hoc questions or Business authoring. Clients without resource access use `ppc_workflow_guide`. Prompts `run-assigned-analyses` and `analyze-or-edit-business` provide entry points. The typed references explain rich documents, shared metadata, claims, exact revisions and reporting.
 
-Native run API requires companion backend migration `1720000000043_automation-native-run-ingestion` and the matching `/action/v1/automation` implementation. `ppc_capabilities` reports unavailable/unauthorized operations explicitly. Native Business access remains controlled by existing organization enrollment, live roles and account grants; installing the MCP does not enroll a user or grant an administrator role.
+Native run API requires companion backend migration `1720000000045_automation-native-run-ingestion` and the matching `/action/v1/automation` implementation. `ppc_capabilities` reports unavailable/unauthorized operations explicitly. Native Business access remains controlled by existing organization enrollment, live roles and account grants; installing the MCP does not enroll a user or grant an administrator role.
 
 For scheduled work: discover enabled assignments owned by the current user; claim the exact occurrence; follow pinned SOP/Business/KPI protocols; calculate/reuse compatible evidence; prepare only KPI-linked pending proposals; close every run with complete/partial/no-action/failed outcomes. Read back native history before presenting the review links. `ppc_start_recurring_analysis` remains a read-only brief, not a claim.
 

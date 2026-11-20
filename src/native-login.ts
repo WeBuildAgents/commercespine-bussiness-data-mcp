@@ -32,7 +32,7 @@ export async function nativeLogin(options:{api:string;console:string;store:Sessi
       form.delete('password');text='';
       if(typeof auth?.accessToken!=='string'||typeof auth?.refreshToken!=='string'||!Number.isFinite(auth?.expiresIn))throw Error('invalid_auth');
       const user=await call('/api/v1/users/me','GET',undefined,auth.accessToken);
-      if(!user?.id||!user.organization?.id||user.status!=='ACTIVE'||user.organization.status!=='ACTIVE'||user.mustResetPassword||!user.roleCodes?.some((r:string)=>['ORG_ADMIN','MEMBER'].includes(r)))throw Error('identity_not_eligible');
+      if(!user?.id||!user.organization?.id||user.status!=='ACTIVE'||user.organization.status!=='ACTIVE'||user.mustResetPassword||!Array.isArray(user.roleCodes)||user.roleCodes.length===0)throw Error('identity_not_eligible');
       const previous=await options.store.load();let agentToken:string|undefined,agentTokenId:string|undefined;
       if(isNativeSession(previous)&&previous.origin===api&&previous.credentials.userId===user.id&&previous.credentials.organizationId===user.organization.id){
         try{const prior=await call('/api/v1/tokens/'+encodeURIComponent(previous.credentials.agentTokenId),'GET',undefined,auth.accessToken);if(prior.ownerUserId===user.id&&prior.status==='ACTIVE'&&(!prior.expiresAt||Date.parse(prior.expiresAt)>Date.now())){agentToken=previous.credentials.agentToken;agentTokenId=prior.id}}
