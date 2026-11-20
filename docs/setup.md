@@ -35,7 +35,7 @@ Windows protects the saved connection with CurrentUser DPAPI. Unix uses a privat
 
 Read `sellerplex://skills/automation` for assigned recurring work and `sellerplex://skills/business` for ad hoc questions or Business authoring. Clients without resource access use `ppc_workflow_guide`. Prompts `run-assigned-analyses` and `analyze-or-edit-business` provide entry points. The typed references explain rich documents, shared metadata, claims, exact revisions and reporting.
 
-Native run API requires companion backend migration `1720000000045_automation-native-run-ingestion` and the matching `/action/v1/automation` implementation. `ppc_capabilities` reports unavailable/unauthorized operations explicitly. Native Business access remains controlled by existing organization enrollment, live roles and account grants; installing the MCP does not enroll a user or grant an administrator role.
+Native run API requires companion backend migration `1720000000045_automation-native-run-ingestion` and the matching `/action/v1/automation` implementation. `ppc_capabilities` reports unavailable/unauthorized operations explicitly. Native Business access remains controlled by organization Business enablement, live roles and account grants; installing the MCP does not enroll a user or grant an administrator role.
 
 For scheduled work: discover enabled assignments owned by the current user; claim the exact occurrence; follow pinned SOP/Business/KPI protocols; calculate/reuse compatible evidence; prepare only KPI-linked pending proposals; close every run with complete/partial/no-action/failed outcomes. Read back native history before presenting the review links. `ppc_start_recurring_analysis` remains a read-only brief, not a claim.
 

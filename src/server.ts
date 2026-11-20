@@ -45,7 +45,7 @@ export function createServer(client: ApiClient,options:{legacy?:boolean}={}): Mc
   }
 
   tool("ppc_identity", "Read your current identity, role and effective account access. Native mode: call ppc_connect when sign-in is needed, then let the human sign in through its local browser link. Never ask for credentials in chat.", {}, true, () => client.request("GET", "/v1/me"));
-  tool('ppc_native_business_catalog','Discover governed native Business entities and permitted operations for your current enrollment and live roles. Brand/account identifiers are canonical connected Data Layer IDs.',{},true,()=>nativeBusinessRequest(client,'GET','/catalog'));
+  tool('ppc_native_business_catalog','Discover governed native Business entities and permitted operations for your current Business enablement and live roles. Brand/account identifiers are canonical connected Data Layer IDs.',{},true,()=>nativeBusinessRequest(client,'GET','/catalog'));
   tool('ppc_native_business_propose','Submit one native Business proposal; never approve or execute it. Supply the complete typed parameters, four decision fields and a stable UUID requestId. Existing records require targetId and baseRevision. Brand/account registration selects an existing connected Data Layer identity and cannot provision one. Recurring analysis upsert uses its existing linked-ID contract. See the operating skill for fields.',{
     entity:nativeBusinessEntities,action:nativeBusinessAction,parameters:json,
   },false,args=>nativeBusinessRequest(client,'POST','/proposals',nativeBusinessEnvelope(args.entity,args.action,args.parameters)));

@@ -11,7 +11,7 @@ Use the installed `ppc_*` MCP tools. Commerce Spine owns Business configuration,
 
 Read `ppc_identity` and `ppc_capabilities`. If sign-in is needed, call `ppc_connect` and give the human its local verification link. The human signs in and confirms connection in that browser; never request credentials in chat. Recheck identity after connection. If a capability is absent or unauthorized, explain that exact gap; do not treat errors as empty results or fall back to legacy Notion writes.
 
-Use `ppc_native_assignments` for currently enabled, approved analyses assigned to this user, optionally filtered by account. Follow the user's chosen account selection. Readable disabled/unassigned definitions are review material, not scheduled assignments. The MCP does not enroll Ryan or any other user, grant roles, or activate an analysis automatically.
+Use `ppc_native_assignments` for currently enabled, approved analyses assigned to this user, optionally filtered by account. Follow the user's chosen account selection. Readable disabled/unassigned definitions are review material, not scheduled assignments. The MCP does not enable Business for a user, grant roles, or activate an analysis automatically.
 
 ## Run one occurrence
 

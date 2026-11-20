@@ -5,7 +5,7 @@ description: Answer ad hoc Commerce Spine questions and manage native Business I
 
 # Commerce Spine ad hoc and Business work
 
-Use the installed `ppc_*` tools with the current user's organization/account rights. Start with `ppc_identity` and `ppc_capabilities`; use `ppc_connect` for human browser sign-in when required. Neither a skill nor an administrator token expands enrollment or current permissions. Native state lives in Commerce Spine, not Notion or a second local database.
+Use the installed `ppc_*` tools with the current user's organization/account rights. Start with `ppc_identity` and `ppc_capabilities`; use `ppc_connect` for human browser sign-in when required. Neither a skill nor an administrator token enables Business or expands current permissions. Native state lives in Commerce Spine, not Notion or a second local database.
 
 ## Ad hoc analysis
 

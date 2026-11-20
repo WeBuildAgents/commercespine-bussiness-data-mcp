@@ -2,7 +2,7 @@
 
 Connect Codex, Claude Code or Claude Desktop to Commerce Spine through a local MCP server and two operating skills. Sign in in your browser; credentials stay outside the conversation.
 
-**Preview release:** the package is independently tested. Native recurring-run reporting and proposal workflows require the matching server rollout and migration 45. Use `ppc_capabilities` after login to discover what your organization can use. Installing this package does not grant accounts, roles or pilot enrollment.
+**Preview release:** the package is independently tested. Native recurring-run reporting and proposal workflows require the matching server rollout and migration 45. Use `ppc_capabilities` after login to discover what your organization can use. Installing this package does not grant accounts, roles or organization features.
 
 ## Ask your agent to set it up
 
